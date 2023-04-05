@@ -1,0 +1,42 @@
+class Ticket:
+    def __init__(self,name,price,amount,language = "Geo"):
+        self.name = name
+        self.price = price
+        self.amount = amount
+        self.language = language
+    def __str__(self):
+        return f'Film name - {self.name}, Price - {self.price}, Tickets - {self.amount}, Language - {self.language}'
+
+
+class User:
+    def __init__(self,buyername, balance):
+        self.buyer = buyername
+        self.balance = balance
+
+    def TicketBuy(self, ticketamout,  a=Ticket('Panther', 15, 10)):
+        self.ticketamount = ticketamout
+
+        if a.price*self.ticketamount<=self.balance and a.amount==self.ticketamount:
+            self.balance-=a.price*self.ticketamount
+            print(f'You bought {self.ticketamount} tickets')
+        if a.price*self.ticketamount>self.balance:
+            print("You dont have enough money youre broke")
+        if a.amount != self.ticketamount:
+            print("Not enough tickets available")
+
+    def deposit(self,addamount=0):
+        self.add = addamount
+        self.balance+=addamount
+
+
+    def __str__(self):
+        return  f'Buyer name - {self.buyer}, Balance - {self.balance}'
+
+tic = Ticket("Panther", 15, 10)
+print(tic)
+person = User('irakli', 500)
+print(person)
+person.TicketBuy(10)
+print(person)
+person.deposit(200)
+print(person)
